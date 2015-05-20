@@ -1,0 +1,1 @@
+Das erste ist der Standard unity controller mit rigidbody, zweites ist ein controller basierend auf raycasts. 
