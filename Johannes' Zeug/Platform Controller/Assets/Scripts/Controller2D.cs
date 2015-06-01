@@ -19,9 +19,23 @@ public class Controller2D : MonoBehaviour {
 	float horizontalRaySpacing;
 	float verticalRaySpacing;
 
+<<<<<<< HEAD
+	//WJ properties
+
+	const float angledWallJStrX = 30f;  // negate gravity too!
+	const float angledWallJStrY = 30f;
+	const float defWallJStrX = 12f;
+	const float defWallJStrY = 24f;
+
+	const float wallJThreshhold = 0.1f;  // changes walljumps with an entry angle that is too narrow to a fixed wallJump
+	//WJ properties end
+
+	BoxCollider2D collider= new BoxCollider2D();
+=======
 
 
 	BoxCollider2D collider;
+>>>>>>> f7c6948ecd56f484a5fdd183bccc9c193fca32dd
 	RaycastOrigins raycastOrigins;
 	public CollisionInfo collisions;
 
@@ -56,7 +70,31 @@ public class Controller2D : MonoBehaviour {
 	{
 		float directionX = Mathf.Sign (velocity.x);
 		float rayLength = Mathf.Abs (velocity.x) + skinWidth;
+<<<<<<< HEAD
+
+		//for wj ray
+		float rayLengthMod = 2f;
 		//print ("3"+collisions.velocityOld);    //it is (0,0,0)
+
+
+		//print ("velX:" + velocity.x + "velY:" + velocity.y);
+		Vector2 velocityWji = new Vector2(velocity.x, velocity.y);
+		velocityWji.Normalize ();
+
+
+
+		Vector2 rayOriginWj = (directionX == -1) ?  raycastOrigins.middleLeft: raycastOrigins.middleRight;
+		RaycastHit2D hitWj = Physics2D.Raycast (rayOriginWj , velocityWji, rayLength*rayLengthMod ,collisionMask);
+
+
+
+		Debug.DrawRay (rayOriginWj, velocityWji* rayLength*rayLengthMod,Color.green);
+
+
+
+=======
+		//print ("3"+collisions.velocityOld);    //it is (0,0,0)
+>>>>>>> f7c6948ecd56f484a5fdd183bccc9c193fca32dd
 		for (int i = 0; i < horizontalRayCount; i++)
 		{
 			Vector2 rayOrigin = (directionX == -1) ? raycastOrigins.bottomLeft:raycastOrigins.bottomRight;
@@ -73,11 +111,17 @@ public class Controller2D : MonoBehaviour {
 				if (i == 0 && slopeAngle <= maxClimbAngle) {
 					if (collisions.descendingSlope) {
 						collisions.descendingSlope = false;
+<<<<<<< HEAD
+
+						velocity = collisions.velocityOld;      //seems to reset the velocity vector, since velocityOld was never initialized
+
+=======
 						//print ("3"+collisions.velocityOld);
 						//print ("1"+velocity);
 						velocity = collisions.velocityOld;      //seems to reset the velocity vector, since velocityOld was never initialized
 						//print ("4"+collisions.velocityOld);
 						//print ("2"+velocity);
+>>>>>>> f7c6948ecd56f484a5fdd183bccc9c193fca32dd
 					}
 					float distanceToSlopeStart = 0;
 					if(slopeAngle != collisions.slopeAngleOld){
@@ -103,6 +147,40 @@ public class Controller2D : MonoBehaviour {
 					collisions.right = directionX == 1;
 				}
 
+<<<<<<< HEAD
+			
+			}
+
+			//w
+			if (hitWj ) 
+			{
+				float slopeAngleWj = Vector2.Angle (hitWj.normal, Vector2.up);
+
+				
+				if (slopeAngleWj > maxClimbAngle){
+					
+					
+					collisions.wallJumpDone = false;
+
+					
+					if (velocityWji.x < 0){
+						collisions.wallLeft = true;
+					}else if(velocityWji.x > 0){
+						collisions.wallRight = true;
+					}
+
+
+					//you just have to mirror the velocityWj on the Y axis to get the exit angle out of the entry angle
+					if (velocityWji.y > wallJThreshhold)
+					{
+						collisions.velocityWj.Set(velocityWji.x *(-1)*angledWallJStrX, velocityWji.y* angledWallJStrY,0); 
+
+					}else  //if the angle doesnt reach the threshold it will do the default walljump
+					{
+
+						collisions.velocityWj.Set(defWallJStrX*directionX*(-1), defWallJStrY,0); 
+					}
+=======
 				//w
 				if ( slopeAngle > maxClimbAngle) 
 				{
@@ -140,6 +218,7 @@ public class Controller2D : MonoBehaviour {
 
 					}
 
+>>>>>>> f7c6948ecd56f484a5fdd183bccc9c193fca32dd
 				}
 			}
 		}
@@ -243,12 +322,25 @@ public class Controller2D : MonoBehaviour {
 		//An axis-aligned bounding box, or AABB for short, is a box aligned with coordinate axes and fully enclosing some object. Because the box is never rotated with respect to the axes, it can be defined by just its center and extents, or alternatively by min and max points.
 		Bounds bounds = collider.bounds;
 
+<<<<<<< HEAD
+
+
+
+=======
+>>>>>>> f7c6948ecd56f484a5fdd183bccc9c193fca32dd
 		bounds.Expand (skinWidth * -2);
 
 		raycastOrigins.bottomLeft = new Vector2 (bounds.min.x, bounds.min.y);
 		raycastOrigins.bottomRight = new Vector2 (bounds.max.x, bounds.min.y);
 		raycastOrigins.topLeft = new Vector2 (bounds.min.x, bounds.max.y);
 		raycastOrigins.topRight = new Vector2 (bounds.max.x, bounds.max.y);
+<<<<<<< HEAD
+
+		//for the middle origin of Wj
+		raycastOrigins.middleLeft = new Vector2 (bounds.min.x, bounds.center.y);
+		raycastOrigins.middleRight = new Vector2 (bounds.max.x, bounds.center.y  );  //strange behaviour with bounds.max.y /2 instead of center.y
+=======
+>>>>>>> f7c6948ecd56f484a5fdd183bccc9c193fca32dd
 	}
 
 	void CalculateRaySpacing() {
@@ -265,6 +357,11 @@ public class Controller2D : MonoBehaviour {
 	struct RaycastOrigins {
 		public Vector2 topLeft, topRight;
 		public Vector2 bottomLeft, bottomRight;
+<<<<<<< HEAD
+		//one for detecting the entry angle of the Wj
+		public Vector2 middleLeft, middleRight;
+=======
+>>>>>>> f7c6948ecd56f484a5fdd183bccc9c193fca32dd
 	}
 
 	public struct CollisionInfo{
@@ -279,6 +376,14 @@ public class Controller2D : MonoBehaviour {
 		public float slopeAngle, slopeAngleOld;
 		public Vector3 velocityOld; //didnt know whereelse to put it
 		public Vector3 velocityWj;
+<<<<<<< HEAD
+		public bool wallJumpDone;
+
+		public void wJReset() {
+			wallJumpDone = true;
+		}
+=======
+>>>>>>> f7c6948ecd56f484a5fdd183bccc9c193fca32dd
 
 		public void Reset() {
 			above = below = false;
@@ -288,7 +393,11 @@ public class Controller2D : MonoBehaviour {
 			//walljump
 			wallLeft = wallRight = false;
 
+<<<<<<< HEAD
+			velocityWj= Vector3.zero;
+=======
 			//velocityWj= Vector3.zero;
+>>>>>>> f7c6948ecd56f484a5fdd183bccc9c193fca32dd
 
 			slopeAngleOld = slopeAngle;
 			slopeAngle = 0;
@@ -296,3 +405,7 @@ public class Controller2D : MonoBehaviour {
 		}
 	}
 }
+<<<<<<< HEAD
+
+=======
+>>>>>>> f7c6948ecd56f484a5fdd183bccc9c193fca32dd
