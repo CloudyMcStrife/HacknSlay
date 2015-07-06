@@ -46,10 +46,7 @@
 	</Reference>
   </ItemGroup>
   <ItemGroup>
-<<<<<<< HEAD
      <Compile Include="Assets\Scripts\CameraFollow.cs" />
-=======
->>>>>>> f7c6948ecd56f484a5fdd183bccc9c193fca32dd
      <Compile Include="Assets\Scripts\Controller2D.cs" />
      <Compile Include="Assets\Scripts\Player.cs" />
  <Reference Include="UnityEngine.UI">
