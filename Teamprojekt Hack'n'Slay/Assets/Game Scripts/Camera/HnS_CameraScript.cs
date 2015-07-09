@@ -9,38 +9,29 @@ public class HnS_CameraScript : MonoBehaviour {
 	private RaycastHit rayHit;
 	private Ray downRay;
 	private const float standardDistance = -5;
-	private float currentAccelleration = 0;
+	//private float targetHeightHalfed;
 	//bool rayCastCollision = false;
 
 	
 	
 	// Use this for initialization
 	void Start () {
-		
+		//targetHeightHalfed = target.m_height / 2;
+
+		//print ("CameraScript m_height: " + targetHeightHalfed);
 	}
 	
 	// Update is called once per frame
 	void Update () {
-
-		/*downRay = new Ray (target.transform.position, -Vector3.up);
-
-		print ("RayCast collided: " + rayCastCollision);
-
-		if (!target.m_IsGrounded) {
-			rayCastCollision = Physics.Raycast (downRay, out rayHit);
-			if (rayCastCollision) {
-				goalZDistance = standardDistance - rayHit.distance;
-			}
-		} else {
-			//goalZDistance = standardDistance;
-		}
-		*/
 
 		goalZDistance = standardDistance - target.m_totalGroundDistance;
 
 		float diff = goalZDistance - this.transform.position.z;
 		//currentAccelleration = Mathf.Sign(diff)*diff*diff;
 		//currentAccelleration = Mathf.Sign (diff) * diff * diff;
-		this.gameObject.transform.position = new Vector3(target.transform.position.x, target.transform.position.y, this.transform.position.z + 5*diff*Time.deltaTime); 
+
+
+		// The '2' in the y-dimension is for compensation of the MainCharacter's height. Its local center is set down at the feet, so that's where the camera WOULD look
+		this.gameObject.transform.position = new Vector3(target.transform.position.x, target.transform.position.y + 2, this.transform.position.z + 5*diff*Time.deltaTime); 
 	}
 }
