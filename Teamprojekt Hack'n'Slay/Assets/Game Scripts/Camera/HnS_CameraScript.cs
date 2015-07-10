@@ -26,6 +26,7 @@ public class HnS_CameraScript : MonoBehaviour {
 
 		goalZDistance = standardDistance - target.m_totalGroundDistance;
 
+
 		float diff = goalZDistance - this.transform.position.z;
 		//currentAccelleration = Mathf.Sign(diff)*diff*diff;
 		//currentAccelleration = Mathf.Sign (diff) * diff * diff;
@@ -33,5 +34,10 @@ public class HnS_CameraScript : MonoBehaviour {
 
 		// The '2' in the y-dimension is for compensation of the MainCharacter's height. Its local center is set down at the feet, so that's where the camera WOULD look
 		this.gameObject.transform.position = new Vector3(target.transform.position.x, target.transform.position.y + 2, this.transform.position.z + 5*diff*Time.deltaTime); 
+	}
+
+	public void setTarget(HnS_MainCharacter target)
+	{
+		this.target = target;
 	}
 }

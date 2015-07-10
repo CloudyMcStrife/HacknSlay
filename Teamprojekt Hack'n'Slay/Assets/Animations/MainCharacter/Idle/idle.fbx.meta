@@ -88,7 +88,7 @@ ModelImporter:
       loop: 0
       loopTime: 1
       loopBlend: 1
-      loopBlendOrientation: 0
+      loopBlendOrientation: 1
       loopBlendPositionY: 0
       loopBlendPositionXZ: 0
       keepOriginalOrientation: 0
@@ -98,14 +98,7 @@ ModelImporter:
       mirror: 0
       bodyMask: 01000000010000000100000001000000010000000100000001000000010000000100000001000000010000000100000001000000
       curves: []
-      events:
-      - time: -Infinity
-        functionName: NewEvent
-        data: 
-        objectReferenceParameter: {instanceID: 0}
-        floatParameter: 0
-        intParameter: 0
-        messageOptions: 0
+      events: []
       transformMask:
       - path: 
         weight: 1
@@ -120,7 +113,7 @@ ModelImporter:
       - path: mixamorig:Hips/mixamorig:LeftUpLeg/mixamorig:LeftLeg/mixamorig:LeftFoot/mixamorig:LeftToeBase
         weight: 1
       - path: mixamorig:Hips/mixamorig:LeftUpLeg/mixamorig:LeftLeg/mixamorig:LeftFoot/mixamorig:LeftToeBase/mixamorig:LeftToe_End
-        weight: 1
+        weight: 0
       - path: mixamorig:Hips/mixamorig:RightUpLeg
         weight: 1
       - path: mixamorig:Hips/mixamorig:RightUpLeg/mixamorig:RightLeg
@@ -130,7 +123,7 @@ ModelImporter:
       - path: mixamorig:Hips/mixamorig:RightUpLeg/mixamorig:RightLeg/mixamorig:RightFoot/mixamorig:RightToeBase
         weight: 1
       - path: mixamorig:Hips/mixamorig:RightUpLeg/mixamorig:RightLeg/mixamorig:RightFoot/mixamorig:RightToeBase/mixamorig:RightToe_End
-        weight: 1
+        weight: 0
       - path: mixamorig:Hips/mixamorig:Spine
         weight: 1
       - path: mixamorig:Hips/mixamorig:Spine/mixamorig:Spine1
@@ -150,7 +143,7 @@ ModelImporter:
       - path: mixamorig:Hips/mixamorig:Spine/mixamorig:Spine1/mixamorig:Spine2/mixamorig:Neck/mixamorig:Head
         weight: 1
       - path: mixamorig:Hips/mixamorig:Spine/mixamorig:Spine1/mixamorig:Spine2/mixamorig:Neck/mixamorig:Head/mixamorig:HeadTop_End
-        weight: 1
+        weight: 0
       - path: mixamorig:Hips/mixamorig:Spine/mixamorig:Spine1/mixamorig:Spine2/mixamorig:RightShoulder
         weight: 1
       - path: mixamorig:Hips/mixamorig:Spine/mixamorig:Spine1/mixamorig:Spine2/mixamorig:RightShoulder/mixamorig:RightArm
@@ -494,7 +487,7 @@ ModelImporter:
     armStretch: .0500000007
     legStretch: .0500000007
     feetSpacing: 0
-    rootMotionBoneName: 
+    rootMotionBoneName: mixamorig:Hips
   lastHumanDescriptionAvatarSource: {instanceID: 0}
   animationType: 3
   additionalBone: 0
